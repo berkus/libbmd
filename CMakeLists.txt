@@ -21,7 +21,7 @@ add_library(bmd
 
 if (BUILD_TOOLS)
     find_package(LibAV REQUIRED)
-    include_directories(${LIBAV_INCLUDE_DIR})
+    include_directories(${LIBAV_INCLUDE_DIRS})
 
     set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -fPIC")
 
