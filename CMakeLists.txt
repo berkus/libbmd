@@ -21,14 +21,18 @@ add_library(bmd
 
 if (BUILD_TOOLS)
     find_package(LibAV REQUIRED)
+    include_directories(${LIBAV_INCLUDE_DIR})
+
+    set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -fPIC")
 
     #add_executable(bmdplay src/bmdplay.cpp)
     #target_link_libraries(bmdplay bmd )
 
-    add_executable(bmdcapture ${LIBAV_INCLUDE_DIR}  src/bmdcapture.c)
-    target_link_libraries(bmdcapture ${LIBAV_LIBRARIES} bmd ${CMAKE_THREAD_LIBS_INIT} -ldl -fPIC)
+    add_executable(bmdcapture  src/bmdcapture.c)
+    target_link_libraries(bmdcapture ${LIBAV_LIBRARIES} bmd ${CMAKE_THREAD_LIBS_INIT} dl)
 
 #add_executable(bmdgenlock src/bmdgenlock.cpp)
 #target_link_libraries(bmdgenlock bmd)
 
 endif (BUILD_TOOLS)
+
